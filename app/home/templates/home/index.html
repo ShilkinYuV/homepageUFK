@@ -1,0 +1,75 @@
+<!DOCTYPE html> <!-- Объявление формата документа -->
+{% load static %}
+<html>
+<head> <!-- Стартовая страница УФК по Московской области -->
+
+<meta charset="UTF-8"> <!-- Определяем кодировку символов документа -->
+<title>Стартовая страница УФК по Московской области</title>  
+<link rel="stylesheet" href="{% static 'css/stylesheet.css' %}"/>
+<link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
+<script type="text/javascript" src={% static "js/myjs.js" %}></script>
+<script type="text/javascript" src={% static "js/popper.min.js" %}></script>
+<script type="text/javascript" src={% static "js/bootstrap.min.js" %}></script>
+</head>
+<body>
+    {% for el in messages %}
+    <div class="alert alert-danger">
+        <strong>{{el.message}}</strong>
+      </div>
+    {%endfor%}
+    
+    <div class="plitka container-fluid bg-dark">
+        <button class="btn text-white btn-primary w-10 h-20 sdvig" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
+        </button>
+        <div class="row justify-content-center g-1  p-5">
+            <div class="offcanvas offcanvas-start  bg-dark" id="demo">
+                <div class="offcanvas-header">
+                  <h3 class="offcanvas-title">Контакты:</h3>
+                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    {% for el in sysppo %}
+                        <div class="mb-1  bg-dark border-secondary otv">
+                            <h6 class="text-white h6">{{el.name}}:</h6>
+                            <span class="text-muted">
+                            {% for n in el.technics_type.all%}
+                            {{ n.number }}
+                            {% endfor %}
+                            </span>
+                    </div>
+                    {% endfor %}
+                </div>
+              </div>
+            {% for el in node %}
+                <div class="col-7 col-md-4 col-lg-1" style="width: 12.499999995%">
+                    <div class="card mb-1">
+                        <a href="{{el.ssilka}}">
+                        <img class="card-img-top" src="{{el.image_field.url}}">
+                        <div class="fs-6 text-center namesystem text-wrap">
+                            <p>{{el.get_title}}</p>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+   <div class="for-footer">
+        <footer class="footer mt-auto py-1 fixed-bottom bg-dark text-white">
+            <span class="text-muted">
+                <div class="row justify-content-center">
+                    {% for el in duty %}
+                        <div class="col-9 col-md-9 col-lg-6">
+                            <h6>Дежурные ОИС на {{el.date|date:"Y-m-d"}}: каб. 105 - {{el.kabinet_five}}, каб. 104 - {{el.kabinet_four}}</h6>
+                        </div>
+                    {% endfor %}
+                </div>
+            </span>
+        </footer>
+    </div>
+</body>
+</html>

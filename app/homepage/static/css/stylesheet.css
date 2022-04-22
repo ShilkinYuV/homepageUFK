@@ -1,0 +1,61 @@
+html, body {
+  background: url("../back.jpg");
+  background-size: cover;
+  /* background-color: rgb(59, 80, 110); */
+}
+
+.card-img-top{
+  height: 120px;
+}
+
+.card{
+  margin: 10px;
+  height: 150px;
+  transition: 1s; /* Время эффекта */
+  display: block;
+}
+.card:hover{
+  transform: scale(1.2); /* Увеличиваем масштаб */
+}
+
+.card a{
+  text-decoration: none;
+  color:black;
+}
+
+.for-footer {
+  margin-top:100px;
+  opacity: 0.9;
+}
+
+.otv{
+  height: 60px;
+}
+
+.navbar{
+  opacity: 0.8;
+}
+
+.cont-nav{
+  opacity: 0.7;
+}
+
+.plitka{
+  margin-top: 50px;
+  opacity: 0.95;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-over{
+  display: inline-block; 
+  overflow: hidden; /* Скрываем всё за контуром */
+}
+
+.sdvig{
+  float: left;
+  position: absolute;
+  top: 50%;
+}
